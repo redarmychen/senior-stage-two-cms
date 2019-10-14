@@ -156,7 +156,9 @@ VirtualBox 是一款开源虚拟机软件。VirtualBox 是由德国 Innotek 公�
 
   查看指定目录下面的目录列表
 
+```
 ll /root/Desktop/test 
+```
 
 **课堂案例** 查看指定目录下面的目录列表
 
@@ -164,7 +166,9 @@ ll /root/Desktop/test
 
 - **rmdir**
 
+  ```
   rmdir命令 用来删除空目录
+  ```
 
 **课堂案例** 删除hellos目录
 
@@ -172,7 +176,9 @@ ll /root/Desktop/test
 
 - **cat**
 
+  ```
   cat命令连接文件并打印到标准输出设备上，cat经常用来显示文件的内容
+  ```
 
 **课堂案例** 查看创建hi.txt文件
 
@@ -499,7 +505,9 @@ z x v f c 参数选项
 
 解压方式：
 
+```
 tar -zxvf gzip .gz结尾的文件
+```
 
 **课堂案例** 解压tomcat的tar.gz文件
 
@@ -579,9 +587,11 @@ ps -ef 等同于 ps -Af
 
 **课堂案例**  添加组命令 
 
+```
 groupadd chjx 采用自动分配的id 
 
 groupadd -g 508 chjy 采用指定的id 
+```
 
 ![1568719726830](unit01.assets/1568719726830.png) 
 
@@ -798,9 +808,13 @@ Again Shell)等。
 
 - kill
 
-  **kill命令**用来删除执行中的程序或工作 
-
+  ```
+  kill命令用来删除执行中的程序或工作 
+  
   kill -9 进程id号
+  ```
+
+  
 
 #  课堂练习
 
