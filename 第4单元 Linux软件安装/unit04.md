@@ -65,7 +65,9 @@ l 格式：rpm [参数] [软件]
 
 l 第一步：查看现有安装的JDK版本
 
+```
 rpm -qa | grep -i java 
+```
 
 ![1570847241661](unit04.assets/1570847241661.png) 
 
@@ -109,9 +111,11 @@ vim /etc/profile   #进入根目录
 
 在这个配置文件的末尾(先i，可以移动光标，通过上下左右箭头)，添加如下2行代码(建议复制)
 
+```
 export JAVA_HOME=/usr/local/src/java/jdk1.8.0_65
 
 export PATH=$JAVA_HOME/bin:$PATH
+```
 
 然后使用Esc  :wq保存退出
 
@@ -147,7 +151,9 @@ rpm -qa | grep -i mysql --color
 
 l 第二步：卸载之前的版本
 
+```
 rpm -e --nodeps mysql-libs-5.1.73-5.el6_6.x86_64 
+```
 
 ![1570847663143](unit04.assets/1570847663143.png) 
 
@@ -159,7 +165,9 @@ MySQL安装系统会自动指定目录。
 
 l 第四步：安装server
 
+```
 rpm -ivh MySQL-server-5.6.25-1.el6.x86_64.rpm
+```
 
 ![1570847740832](unit04.assets/1570847740832.png) 
 
@@ -181,13 +189,17 @@ service mysql status
 
 l 第七步：启动MySQL服务
 
+```
 service mysql start
+```
 
 ![1570847940605](unit04.assets/1570847940605.png) 
 
 l 第八步：使用root账户登录MySQL
 
+```
 [root@gao~]# cat /root/.mysql_secret
+```
 
 ![1570847960031](unit04.assets/1570847960031.png)
 
@@ -219,17 +231,23 @@ l 第十一步：远程主机访问，设置防火墙
 
 n 打开防火墙配置
 
+```
 vim /etc/sysconfig/iptables
+```
 
 n 设置内容
 
+```
 -A INPUT -m state --state NEW -m tcp -p tcp --dport 3306 -j ACCEPT
+```
 
 ![1570848029750](unit04.assets/1570848029750.png) 
 
 n 重启服务  
 
+```
 service iptables restart
+```
 
 ![1570848046094](unit04.assets/1570848046094.png) 
 
