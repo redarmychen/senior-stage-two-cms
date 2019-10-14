@@ -5,7 +5,7 @@
     * [1.3 linux系统的安装](第1单元%20Linux概述/unit01.md#13-linux系统的安装)
     * [1.4 linux的系统目录结构](第1单元%20Linux概述/unit01.md#14-linux的系统目录结构)
     * [1.5 linux系统中的基础命令](第1单元%20Linux概述/unit01.md#15-linux系统中的基础命令)
-    * [1.6 课堂练习](第1单元%20Linux概述/unit01.md#-课堂练习)
+    * [1.6 课堂练习](第1单元%20Linux概述/unit01.md#课堂练习)
 * [第2单元 常用命令](第2单元%20Linux命令/unit02.md)
     * [1.1 课程导入](第2单元%20Linux命令/unit02.md#11-课程导入)
     * [1.2 linux常用的系统命令](第2单元%20Linux命令/unit02.md#12-linux常用的系统命令)
