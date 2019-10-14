@@ -23,6 +23,7 @@
     * [1.2 在linux中安装jdk](第4单元%20Linux软件安装/unit04.md#12-在linux中安装jdk)
     * [1.3 在linux中安装mysql](第4单元%20Linux软件安装/unit04.md#13-在linux中安装mysql)
     * [1.4 在linux中安装tomcat](第4单元%20Linux软件安装/unit04.md#14-在linux中安装tomcat)
+    * [1.5 课堂练习](第4单元%20Linux软件安装/unit04.md#课堂练习)
 * [第5单元 Redis概述与安装](第5单元%20Redis概述与安装/Redis概述与安装.md)
     * [1.1 课程导入](第5单元%20Redis概述与安装/Redis概述与安装.md#11-课程导入)
     * [1.2 redis安装和使用](第5单元%20Redis概述与安装/Redis概述与安装.md#12-redis安装和使用)
