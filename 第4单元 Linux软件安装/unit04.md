@@ -306,3 +306,61 @@ cd /usr/local/src/java/apache-tomcat-7.0.57/bin
 依旧需要先进入tomcat的bin目录，然后执行 ./shutdown.sh命令
 
 ![1570848383868](unit04.assets/1570848383868.png) 
+
+# 课堂练习
+
+## 1.采用课堂教案完成java环境的搭建
+
+要求:
+
+​	1.jdk是1.8以上的版本
+
+​	2.采用源码安装并配置环境变量
+
+​	3.使用javac命令编译一个java文件
+
+​	4.查看java版本号
+
+## 2.采用课堂教案完成mysql的安装
+
+要求:
+
+​	1.mysql是5.6版本
+
+​	2.采用rpm安装
+
+​	3.开放3306端口号
+
+​	4.采用windows电脑上的sqlyog或者是Navicat连接linux的mysql
+
+​	5.导入cms项目数据库并且测试通过
+
+​	6.通过ps命令查看mysql进程
+
+## 3.采用课堂教案完成tomcat的安装
+
+要求:
+
+​	1.采用wget下载tomcat
+
+​	2.要求tomcat版本是8.0以上
+
+​	3.开放防火墙端口号8080
+
+​	4.启动tomcat查看启动日志
+
+​	5.测试tomcat首页
+
+​	6.查看tomcat进程
+
+​	7.关闭tomcat
+
+## 4.综合案例
+
+要求:
+
+​	1.把windows上的cms系统部署到linux环境中
+
+​	2.使用linux版mysql作为数据源
+
+​	3.成功访问到首页
