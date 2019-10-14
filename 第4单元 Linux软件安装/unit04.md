@@ -75,9 +75,11 @@ openJDK它是Linux系统安装时自带的JDK，我们是不需要的，直接�
 
 l 第二步：卸载已有的软件
 
+```
 rpm -e --nodeps java-1.7.0-openjdk-1.7.0.79-2.5.5.4.el6.x86_64
 
 rpm -e --nodeps java-1.6.0-openjdk-1.6.0.35-1.13.7.1.el6_6.x86_64
+```
 
 
 
@@ -85,9 +87,11 @@ rpm -e --nodeps java-1.6.0-openjdk-1.6.0.35-1.13.7.1.el6_6.x86_64
 
 l 第三步：将之前上传好的JDK解压
 
+```
 需要先创建目录 mkdir /usr/local/src/java
 
 tar –zxvf jdk1.8.0_65.tar.gz
+```
 
  ![1570847291740](unit04.assets/1570847291740.png)
 
@@ -117,7 +121,9 @@ l 第六步：使配置文件生效并测试
 
 先进入JDK的bin目录，然后复制以下2行代码即可：
 
+```
 source /etc/profile
+```
 
 java –version  #测试是否安装成功
 
@@ -133,7 +139,9 @@ java –version  #测试是否安装成功
 
 l 第一步：查看之前版本
 
+```
 rpm -qa | grep -i mysql --color
+```
 
 ![1570847641157](unit04.assets/1570847641157.png) 
 
@@ -157,13 +165,17 @@ rpm -ivh MySQL-server-5.6.25-1.el6.x86_64.rpm
 
 l 第五步：安装client
 
+```
 rpm -ivh MySQL-client-5.6.25-1.el6.x86_64.rpm
+```
 
 ![1570847757835](unit04.assets/1570847757835.png) 
 
 l 第六步：查询MySQL服务运行状态
 
+```
 service mysql status
+```
 
 ![1570847824571](unit04.assets/1570847824571.png) 
 
@@ -181,19 +193,25 @@ l 第八步：使用root账户登录MySQL
 
 使用此密码登录:
 
+```
 mysql -uroot -p
+```
 
 登录成功后
 
 l 第九步：修改密码
 
+```
 SET PASSWORD = PASSWORD('root');
+```
 
 ![1570847985285](unit04.assets/1570847985285.png) 
 
 l 第十步：虚拟机内部登录MySQL
 
+```
 mysql -u root –p   密码为之前设置的root
+```
 
 ![1570848007490](unit04.assets/1570848007490.png) 
 
@@ -217,19 +235,21 @@ service iptables restart
 
 n 使用mysql语句创建远程登录用户(**登录MySQL**)
 
+```
 create user 'root'@'%' identified by 'root';		#创建用户，并设置密码
-
-
 
 grant all on *.* to 'root'@'%' with grant option;	#给指定的用户授权
 
 flush privileges;									#刷新权限
+```
 
 ![1570848130702](unit04.assets/1570848130702.png) 
 
 n 远程访问成功
 
+```
 mysql -h192.168.59.128 -uroot –proot
+```
 
 ​	打开DOS窗口，输入上面的命令
 
@@ -247,7 +267,9 @@ rz 上传
 
 l 第二步：解压Tomcat
 
+```
 tar -zxvf apache-tomcat-7.0.57.tar.gz
+```
 
 
 
@@ -255,19 +277,25 @@ tar -zxvf apache-tomcat-7.0.57.tar.gz
 
 l 第三步：移动到指定目录java
 
+```
 mv apache-tomcat-7.0.57 /usr/local/src/java
+```
 
 ![1570848214144](unit04.assets/1570848214144.png) 
 
 l 第四步：配置防火墙(所有的配置都在etc目录下面,指定windows系统访问的端口号)
 
+```
 vim /etc/sysconfig/iptables
+```
 
 ![1570848229141](unit04.assets/1570848229141.png) 
 
 n 运行8080端口远程访问
 
+```
 -A INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT
+```
 
 ![1570848246710](unit04.assets/1570848246710.png) 
 
@@ -277,7 +305,9 @@ n 重启启动防火墙服务
 
 ![1570848262902](unit04.assets/1570848262902.png) 
 
+```
 service iptables restart     #重启防火墙命令
+```
 
 ![1570848280308](unit04.assets/1570848280308.png) 
 
@@ -285,11 +315,15 @@ l 第五步：启动并访问Tomcat
 
 **进入tomcat所在的bin目录**
 
+```
 cd /usr/local/src/java/apache-tomcat-7.0.57/bin
+```
 
 ![1570848297516](unit04.assets/1570848297516.png) 
 
+```
 启动tomcat:  ./startup.sh
+```
 
 ![1570848315365](unit04.assets/1570848315365.png) 
 
