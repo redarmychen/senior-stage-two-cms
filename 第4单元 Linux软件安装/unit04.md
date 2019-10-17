@@ -17,21 +17,21 @@
 
 # 【教学内容】
 
-## 1.1 课程导入
+## 4.1 课程导入
 
 以后我们开发的项目都需要部署到Linux系统下，都是基于java的，那么就必须安装JDK等相关的软件，配置相关的环境。我们一起来学习下，如何在Linux系统中安装软件。
 
-## 1.2 在Linux中安装JDK
+## 4.2 在Linux中安装JDK
 
 在linux 下安装JDK，可正常使用java和javac等命令
 
-#### **1.2.1 准备工作**
+#### **4.2.1 准备工作**
 
 将资料文件夹中的软件目录下的jdk文件上传到Linux系统的用户主目录ee
 
 ![1570847194047](unit04.assets/1570847194047.png)   
 
-#### **1.2.2 相关知识点：rpm命令**
+#### **4.2.2 相关知识点：rpm命令**
 
 l 格式：rpm [参数] [软件]
 
@@ -61,7 +61,7 @@ l 格式：rpm [参数] [软件]
 
 ​			查看：rpm –qa(配置管道使用)
 
-#### **1.2.3 JDK安装步骤**
+#### **4.2.3 JDK安装步骤**
 
 l 第一步：查看现有安装的JDK版本
 
@@ -139,7 +139,7 @@ java –version  #测试是否安装成功
 
 ![1570847615113](unit04.assets/1570847615113.png) 
 
-## 1.3 在Linux中安装mysql
+## 4.3 在Linux中安装mysql
 
 l 第一步：查看之前版本
 
@@ -275,7 +275,7 @@ mysql -h192.168.59.128 -uroot –proot
 
 
 
-## 1.4 在Linux中安装tomcat
+## 4.4 在Linux中安装tomcat
 
 l 第一步：上传Tomcat
 
@@ -361,7 +361,7 @@ cd /usr/local/src/java/apache-tomcat-7.0.57/bin
 
 # 课堂练习
 
-## 1.采用课堂教案完成java环境的搭建
+## 1.采用课堂教案完成java环境的搭建（10分钟)
 
 要求:
 
@@ -373,7 +373,7 @@ cd /usr/local/src/java/apache-tomcat-7.0.57/bin
 
 ​	4.查看java版本号
 
-## 2.采用课堂教案完成mysql的安装
+## 2.采用课堂教案完成mysql的安装(20分钟)
 
 要求:
 
@@ -389,7 +389,7 @@ cd /usr/local/src/java/apache-tomcat-7.0.57/bin
 
 ​	6.通过ps命令查看mysql进程
 
-## 3.采用课堂教案完成tomcat的安装
+## 3.采用课堂教案完成tomcat的安装（15分钟)
 
 要求:
 
@@ -407,7 +407,7 @@ cd /usr/local/src/java/apache-tomcat-7.0.57/bin
 
 ​	7.关闭tomcat
 
-## 4.综合案例
+## 4.综合案例（10分钟)
 
 要求:
 
