@@ -1,4 +1,4 @@
-# 第7单元 Redis事务与持久化
+第7单元 Redis事务与持久化
 
 # 【授课重点】
 
@@ -38,13 +38,21 @@ MySQL事务：
 
 ​	5、 当使用Append-Only模式时，Redis会通过调用系统函数write将该事务内的所有写操作在本次调用中全部写入磁盘。然而如果在写入的过程中出现系统崩溃，如电源故障导致的宕机，那么此时也许只有部分数据被写入到磁盘，而另外一部分数据却已经丢失。Redis服务器会在重新启动时执行一系列必要的一致性检测，一旦发现类似问题，就会立即退出并给出相应的错误提示。此时，我们就要充分利用Redis工具包中提供的redis-check-aof工具，该工具可以帮助我们定位到数据不一致的错误，并将已经写入的部分数据进行回滚。修复之后我们就可以再次重新启动Redis服务器了。
 
-## 7.1.3 命令解释
+## 7.1.3 redis事务命令解释
 
  multi：开启事务用于标记事务的开始，**其后执行的命令都将被存入命令队列**，直到执行EXEC时，这些命令才会被原子的执行，类似与关系型数据库中的：begin transaction  **相当于**MySQL的 **start transaction**
 
  exec：提交事务，类似与关系型数据库中的：**commit**
 
  discard：事务回滚，类似与关系型数据库中的：**rollback**
+
+| 序号 | 命令及描述                                                   |
+| :--- | :----------------------------------------------------------- |
+| 1    | [DISCARD](https://www.runoob.com/redis/transactions-discard.html) 取消事务，放弃执行事务块内的所有命令。 |
+| 2    | [EXEC](https://www.runoob.com/redis/transactions-exec.html) 执行所有事务块内的命令。 |
+| 3    | [MULTI](https://www.runoob.com/redis/transactions-multi.html) 标记一个事务块的开始。 |
+| 4    | [UNWATCH](https://www.runoob.com/redis/transactions-unwatch.html) 取消 WATCH 命令对所有 key 的监视。 |
+| 5    | [WATCH key [key ...\]](https://www.runoob.com/redis/transactions-watch.html) 监视一个(或多个) key ，如果在事务执行之前这个(或这些) key 被其他命令所改动，那么事务将被打断。 |
 
 ## 7.1.4 测试
 
@@ -122,7 +130,9 @@ QUEUED
 127.0.0.1:6379>
 ```
 
- 
+ **到此,我们redis事务的正常执行已经演示完毕!**
+
+接下来,我看下reids事务的回滚操作:
 
  **课堂案例:**
 
@@ -170,9 +180,21 @@ redis> SAVE  //等待生成RDB文件
 ok
 ```
 
+![1571746817154](assets/1571746817154.png) 
+
+生成的rdb文件如图:
+
+![1571746918038](assets/1571746918038.png) 
+
 BGSAVE命令会派生一个子进程，然后由子进程负责创建RDB文件，服务父进程继续处理命令。
 
+```
+redis> bgsave
+```
 
+![1571746763349](assets/1571746763349.png) 
+
+另外,当我们执行shutdown命令的时候,redis在关闭的时候,也会执行save
 
 保存条件:
 
@@ -222,6 +244,8 @@ redis>rpush numbers 128 256 512
 (interger) 3
 ```
 
+![1571747071384](assets/1571747071384.png)  
+
 AOF持久化的方法是将服务器执行的set ，sadd，rpush三个命令保存到AOF文件中
 
 而,RDB持久化是将msg，fruits，numbers三个键的键值对保存到RDB文件。
@@ -245,6 +269,8 @@ redis>set key value
 
 ok
 ```
+
+![1571747117529](assets/1571747117529.png) 
 
 服务器在执行完整个set命令之后会将以下协议内容追加到aof_buf缓冲区末尾：
 
@@ -311,9 +337,9 @@ save, shutdown, slave 命令会触发这个操作。
 
 #  课堂练习
 
-## 1.完成课堂案例
+## 1.完成课堂案例(40分钟)
 
-## 2.描述redis 的两种持久化方式
+## 2.描述redis 的两种持久化方式(20分钟)
 
 要求:
 
