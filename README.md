@@ -36,17 +36,11 @@
 * [第6单元 Redis常用命令](第6单元%20Redis常用命令/unit06.md)
 
     - [6.1 课程导入](第6单元%20Redis常用命令/unit06.md#61-connection连接)
-
     - [6.2 server命令](第6单元%20Redis常用命令/unit06.md#62-server命令)
-
     - [6.3 key命令](第6单元%20Redis常用命令/unit06.md#63-key命令)
-
     - [6.4 string命令](第6单元%20Redis常用命令/unit06.md#64-string命令)
-
     - [6.5 list命令](第6单元%20Redis常用命令/unit06.md#65-list命令)
-
     - [6.6 set命令](第6单元%20Redis常用命令/unit06.md#66-set命令)
-
     - [6.7 hash命令](第6单元%20Redis常用命令/unit06.md#67-hash命令)
 
     - [6.8 zset命令](第6单元%20Redis常用命令/unit06.md#68-zset命令)
