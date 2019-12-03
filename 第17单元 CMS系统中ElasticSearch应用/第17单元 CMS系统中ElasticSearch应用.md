@@ -14,9 +14,9 @@
 
 # 【教学内容】
 
-# 17.1 课程导入
+## 17.1 课程导入
 
-## 17.1.1 es整合cms系统准备工作
+### 17.1.1 es整合cms系统准备工作
 
 1. 首先我们把之前启动cms系统所必须的程序启动起来
 
@@ -48,9 +48,9 @@
 
    ![1574331064690](assets/1574331064690.png) 
 
-# 17.2 CMS中整合ES
+## 17.2 CMS中整合ES
 
-## 17.2.1 编写配置文件
+### 17.2.1 编写配置文件
 
 es.xml
 
@@ -87,7 +87,7 @@ es.xml
 </beans>
 ```
 
-## 17.2.2 声明实体类注解
+### 17.2.2 声明实体类注解
 
 代码如下:
 
@@ -321,7 +321,7 @@ public class ArticleWithBLOBs extends Article   implements Serializable{
 }
 ```
 
-## 17.2.3 编写dao层接口
+### 17.2.3 编写dao层接口
 
 ![1574331905926](assets/1574331905926.png) 
 
@@ -338,11 +338,11 @@ public interface ArticleRepository extends ElasticsearchRepository<ArticleWithBL
 }
 ```
 
-## 17.2.3 让spring容器加载es配置
+### 17.2.3 让spring容器加载es配置
 
 ![1574332080246](assets/1574332080246.png) 
 
-# 17.3 编写Controller层代码
+## 17.3 编写Controller层代码
 
 ```java
 /**
@@ -491,7 +491,7 @@ public interface ArticleRepository extends ElasticsearchRepository<ArticleWithBL
 	}
 ```
 
-# 17.4 编写前端代码
+## 17.4 编写前端代码
 
 
 
@@ -548,6 +548,6 @@ public class ImportMysqlDB2Es {
 
 ![1574332740285](assets/1574332740285.png) 
 
-# 课堂作业:
+# 课堂练习:
 
 ## 1.完成上课cms整合es的操作,实现高亮显示(40分钟)

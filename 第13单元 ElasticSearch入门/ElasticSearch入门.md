@@ -22,9 +22,9 @@
 
 # 【教学内容】
 
-# 13.1 课程导入
+## 13.1 课程导入
 
-## 13.1.1 为什么要使用全文检索
+### 13.1.1 为什么要使用全文检索
 
 用户访问我们的首页，一般都会直接搜索来寻找自己想要购买的商品。
 
@@ -34,7 +34,7 @@
 
 常见的全文检索技术有  Lucene、solr 、elasticsearch  等。
 
-## 13.1.2 理解索引结构  倒排索引
+### 13.1.2 理解索引结构  倒排索引
 
 下图是索引结构，下边黑色部分是物理结构，上边黄色部分是逻辑结构，逻辑结构也是为了更好的去描述工作原理及去使用物理结构中的索引文件。
 
@@ -85,7 +85,7 @@ Github：https://github.com/elastic/elasticsearch
 | 类型(type)     | 表(table)         |
 | 文档(document) | 行(row)           |
 
-# 13.2  ElasticSearch windows版安装
+## 13.2  ElasticSearch windows版安装
 
 下载ElasticSearch  6.6.2版本
 
@@ -127,17 +127,17 @@ elasticsearch
 
 
 
-# 13.3  插件安装
+## 13.3  插件安装
 
-## 13.3.1 安装图形化界面head插件
+### 13.3.1 安装图形化界面head插件
 
 解压elasticsearch-head-master.zip到任意目录
 
-## 13.3.2 安装nodejs程序
+### 13.3.2 安装nodejs程序
 
 Grunt和所有grunt插件都是基于nodejs来运行的
 
-## 13.3.3 grunt安装为全局命令
+### 13.3.3 grunt安装为全局命令
 
 Grunt是一个基于JavaScript上的一个很强大的前端自动化工具基于NodeJS用于自动化构建、测试、生成文档的项目管理工具。
 
@@ -170,16 +170,16 @@ cmd进入到head目录中执行npm install
 
 
 
-## 13.3.4 测试查询
+### 13.3.4 测试查询
 
 ```
  http://localhost:9100
 
 ```
 
-# 13.4 ElasticSearch Linux版安装
+## 13.4 ElasticSearch Linux版安装
 
-## 13.4.1 安装ES服务
+### 13.4.1 安装ES服务
 
 **1.上传elasticsearch-6.6.2.tar.gz 文件 移动到opt目录**
 
@@ -310,7 +310,7 @@ su gaofei
 /opt/elasticsearch-6.6.2/bin/elasticsearch -d   可能启动慢,需要等待一会才能启动成功
 ```
 
-## 13.4.2 安装head插件
+### 13.4.2 安装head插件
 
 **注意:由于head插件是基于NodeJS进行编写的,所以我们要先安装NodeJS环境**
 
@@ -407,6 +407,6 @@ http.cors.allow-origin: '*'
 
 访问head界面:192.168.25.171:9100
 
-# 课堂作业:
+# 课堂练习:
 
 ## 1.根据教案完成es&head插件的安装(40分钟)

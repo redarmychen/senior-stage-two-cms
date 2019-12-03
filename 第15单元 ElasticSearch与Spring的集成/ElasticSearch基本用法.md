@@ -19,9 +19,9 @@
 
 # 【教学内容】
 
-# 15.1 课程导入
+## 15.1 课程导入
 
-## 15.1.1  索引、文档、类型等概念
+### 15.1.1  索引、文档、类型等概念
 
 **索引** index
 
@@ -65,7 +65,7 @@
 | 类型(type)     | 表(table)         |
 | 文档(document) | 行(row)           |
 
-## 15.1.2  索引创建
+### 15.1.2  索引创建
 
 进入es的bin目录下,双击elasticsearch.bat,启动es服务
 
@@ -101,7 +101,7 @@
 
 输入ok即可完成索引的创建!
 
-# 15.2 ES之IK分词器
+## 15.2 ES之IK分词器
 
  **IK分词器简介**
 
@@ -157,7 +157,7 @@ IK分词器3.0的特性如下：
 
 
 
-# 15.3 ES&Spring之CRUD
+## 15.3 ES&Spring之CRUD
 
 
 
@@ -427,7 +427,7 @@ public class SpringDataESTest {
 }
 ```
 
-## 15.3.1 SpringData ElasticSearch的常用操作
+### 15.3.1 SpringData ElasticSearch的常用操作
 
  **增删改查方法测试** :
 
@@ -774,7 +774,7 @@ public class SpringDataESTest {
 }
 ```
 
-# 课堂作业
+# 课堂练习
 
 ## 1. 完成spring&es的整合(20分钟)
 
