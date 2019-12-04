@@ -70,13 +70,13 @@
 
    ![1571217725902](unit06.assets/1571217725902.png) 
 
-5. **confifig set** 命令可以动态地调整 Redis 服务器的配置(confifiguration)而无须重启。
+5. **config set** 命令可以动态地调整 Redis 服务器的配置(confifiguration)而无须重启。
 
    **课堂案例**: 修改配置
 
    ![1571217744081](unit06.assets/1571217744081.png) 
 
-6. **confifig get** 命令用于取得运行中的 Redis 服务器的配置参数
+6. **config get** 命令用于取得运行中的 Redis 服务器的配置参数
 
    **课堂案例**: 获得绑定ip的参数
 
@@ -493,10 +493,22 @@
     **课堂案例**: 查看1702A和1703A的并集
 
     ![1571786619344](unit06.assets/1571786619344.png) 
+    
+    
+    
+ 6. **SREM key [member ...]** 
+
+    删除指定元素。
+
+    **课堂案例**: 删除ss键中的a b c元素
+
+     ![1575429837003](unit06.assets/1575429837003.png) 
+
+    
 
 ### 6.7 hash命令
 
- 1. **HSET key fifield value** 
+ 1. **HSET key field value** 
 
     将哈希表 key 中的域 field 的值设为 value 。 
 
@@ -542,7 +554,7 @@
 
  5.  **HINCRBY** 
 
-    **HINCRBY key fifield increment** 
+    **HINCRBY key field increment** 
 
     为哈希表 key 中的域 field 的值加上增量 increment
 
@@ -560,7 +572,7 @@
 
  7.  **HEXISTS** 
 
-    **HEXISTS key fifield** 
+    **HEXISTS key field** 
 
     查看哈希表 key 中，给定域 field 是否存在。
 
@@ -568,7 +580,7 @@
 
     ![1571786840939](unit06.assets/1571786840939.png) 
 
- 8.  **HDEL key fifield [fifield ...]** 
+ 8.  **HDEL key field [field ...]** 
 
     删除哈希表 key 中的一个或多个指定域，不存在的域将被忽略。
 
@@ -630,7 +642,7 @@
 
     ![1571789011231](unit06.assets/1571789011231.png) 
 
- 6.  **ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offffset** 
+ 6.  **ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset** 
 
     **count]** 
 
@@ -684,7 +696,7 @@
 
  12.  **ZREVRANGEBYSCORE key max min [WITHSCORES] [LIMIT** 
 
-     **offffset count]** 
+     **offset count]** 
 
      返回有序集 key 中， score 值介于 max 和 min 之间(默认包括等于 max 或 min )的所有的成员。 
 
