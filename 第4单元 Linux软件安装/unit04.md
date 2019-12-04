@@ -197,13 +197,7 @@ service mysql start
 
 l 第八步：使用root账户登录MySQL
 
-```
-[root@gao~]# cat /root/.mysql_secret
-```
-
-![1570847960031](unit04.assets/1570847960031.png)
-
-使用此密码登录:
+使用空密码登录:
 
 ```
 mysql -uroot -p
