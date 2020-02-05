@@ -334,7 +334,7 @@
 
     ![1571786153418](unit06.assets/1571786153418.png) 
 
-12.  **SETRANGE key offffset value**
+12.  **SETRANGE key offset value**
 
     **课堂案例**: 用 `value` 参数覆写(overwrite)给定 `key` 所储存的字符串值，从偏移量 `offset` 开始。
 
@@ -442,7 +442,13 @@
 
 ### 6.6 set命令
 
- 1. **SADD key member [member ...]** 
+ 1. **help @set**
+
+    **课堂案例**: help命令查看set相关的命令
+
+    ![1580897004602](unit06.assets/1580897004602.png)  
+
+ 2. **SADD key member [member ...]** 
 
     将一个或多个 member 元素加入到集 
 
@@ -454,7 +460,7 @@
 
     ![1571786526876](unit06.assets/1571786526876.png) 
 
- 2.  **SMEMBERS key** 
+ 3. **SMEMBERS key** 
 
     返回集合 key 中的所有成员 
 
@@ -462,7 +468,7 @@
 
     ![1571786545760](unit06.assets/1571786545760.png) 
 
- 3.  **SDIFF key [key ...]** 
+ 4. **SDIFF key [key ...]** 
 
     返回一个集合的全部成员，该集合是所有给定集合之间的差集。 
 
@@ -472,7 +478,7 @@
 
     ![1571786568765](unit06.assets/1571786568765.png) 
 
- 4.  **SINTER key [key ...]** 
+ 5. **SINTER key [key ...]** 
 
     返回一个集合的全部成员，该集合是所有给定集合的交集。 
 
@@ -484,7 +490,7 @@
 
     ![1571786599894](unit06.assets/1571786599894.png) 
 
- 5.  **SUNION key [key ...]** 
+ 6. **SUNION key [key ...]** 
 
     返回一个集合的全部成员，该集合是所有给定集合的并集。 
 
@@ -493,10 +499,10 @@
     **课堂案例**: 查看1702A和1703A的并集
 
     ![1571786619344](unit06.assets/1571786619344.png) 
+
     
-    
-    
- 6. **SREM key [member ...]** 
+
+ 7. **SREM key [member ...]** 
 
     删除指定元素。
 
@@ -508,7 +514,13 @@
 
 ### 6.7 hash命令
 
- 1. **HSET key field value** 
+ 1. **help @hash**
+
+    **课堂案例**: help命令查看hash相关的命令
+
+     ![1580897119611](unit06.assets/1580897119611.png)
+
+ 2. **HSET key field value** 
 
     将哈希表 key 中的域 field 的值设为 value 。 
 
@@ -528,7 +540,7 @@
 
      ![1571786693212](unit06.assets/1571786693212.png)
 
- 2.  **HKEYS key** 
+ 3. **HKEYS key** 
 
     返回哈希表 key 中的所有域。
 
@@ -536,7 +548,7 @@
 
     ![1571786737729](unit06.assets/1571786737729.png) 
 
- 3.  **HVALS key** 
+ 4. **HVALS key** 
 
     返回哈希表 key 中所有域的值 
 
@@ -544,7 +556,7 @@
 
     ![1571786762725](unit06.assets/1571786762725.png) 
 
- 4.  **HGETALL** 
+ 5. **HGETALL** 
 
     **HGETALL key**返回哈希表 key 中，所有的域和值。 
 
@@ -552,7 +564,7 @@
 
     ![1571786785713](unit06.assets/1571786785713.png) 
 
- 5.  **HINCRBY** 
+ 6. **HINCRBY** 
 
     **HINCRBY key field increment** 
 
@@ -562,7 +574,7 @@
 
     ![1571786803148](unit06.assets/1571786803148.png) 
 
- 6.  **HLEN key** 
+ 7. **HLEN key** 
 
     返回哈希表 key 中域的数量。
 
@@ -570,7 +582,7 @@
 
     ![1571786822454](unit06.assets/1571786822454.png) 
 
- 7.  **HEXISTS** 
+ 8. **HEXISTS** 
 
     **HEXISTS key field** 
 
@@ -580,13 +592,19 @@
 
     ![1571786840939](unit06.assets/1571786840939.png) 
 
- 8.  **HDEL key field [field ...]** 
+ 9. **HDEL key field [field ...]** 
 
     删除哈希表 key 中的一个或多个指定域，不存在的域将被忽略。
 
 ### 6.8 zset命令
 
- 1. **ZADD key score member** 
+ 1. **help @sorted_set**
+
+    **课堂案例**: help命令查看zset相关的命令
+
+    ![1580897234458](unit06.assets/1580897234458.png) 
+
+ 2. **ZADD key score member** 
 
     **[[score member] [score member] ...]** 
 
@@ -606,7 +624,7 @@
 
     ![1571786914172](unit06.assets/1571786914172.png) 
 
- 2.  **ZRANGE key start stop [WITHSCORES]** 
+ 3. **ZRANGE key start stop [WITHSCORES]** 
 
     返回有序集 key 中，指定区间内的成员。 
 
@@ -616,7 +634,7 @@
 
     ![1571786936627](unit06.assets/1571786936627.png) 
 
- 3.  **ZCARD key** 
+ 4. **ZCARD key** 
 
     返回有序集 key 的基数。
 
@@ -624,7 +642,7 @@
 
     ![1571788956125](unit06.assets/1571788956125.png) 
 
- 4.  **ZCOUNT key min max** 
+ 5. **ZCOUNT key min max** 
 
     返回有序集 key 中， score 值在 min 和 max 之间(默认包括 score 值等于 min 或 max )的成员的 
 
@@ -634,7 +652,7 @@
 
     ![1571788975254](unit06.assets/1571788975254.png) 
 
- 5.  **ZINCRBY key increment member** 
+ 6. **ZINCRBY key increment member** 
 
     为有序集 key 的成员 member 的 score 值加上增量 increment
 
@@ -642,7 +660,7 @@
 
     ![1571789011231](unit06.assets/1571789011231.png) 
 
- 6.  **ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset** 
+ 7. **ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset** 
 
     **count]** 
 
@@ -654,7 +672,7 @@
 
     ![1571789032955](unit06.assets/1571789032955.png) 
 
- 7.  **ZRANK key member** 
+ 8. **ZRANK key member** 
 
     返回有序集 key 中成员 member 的排名。其中有序集成员按 score 值递增(从小到大)顺序排列。 
 
@@ -664,11 +682,11 @@
 
     ![1571789061534](unit06.assets/1571789061534.png) 
 
- 8.  **ZREM key member [member ...]** 
+ 9. **ZREM key member [member ...]** 
 
     移除有序集 key 中的一个或多个成员，不存在的成员将被忽略。
 
- 9.  **ZREMRANGEBYRANK key start stop** 
+ 10. **ZREMRANGEBYRANK key start stop** 
 
     移除有序集 key 中，指定排名(rank)区间内的所有成员。
 
@@ -676,7 +694,7 @@
 
     ![1571789090577](unit06.assets/1571789090577.png) 
 
- 10.  **ZREMRANGEBYSCORE key min max** 
+ 11. **ZREMRANGEBYSCORE key min max** 
 
      移除有序集 key 中，所有 score 值介于 min 和 max 之间(包括等于 min 或 max )的成员。
 
@@ -684,7 +702,7 @@
 
      ![1571789120635](unit06.assets/1571789120635.png) 
 
- 11.  **ZREVRANGE key start stop [WITHSCORES]** 
+ 12. **ZREVRANGE key start stop [WITHSCORES]** 
 
      返回有序集 key 中，指定区间内的成员。 
 
@@ -694,7 +712,7 @@
 
      ![1571789143449](unit06.assets/1571789143449.png) 
 
- 12.  **ZREVRANGEBYSCORE key max min [WITHSCORES] [LIMIT** 
+ 13. **ZREVRANGEBYSCORE key max min [WITHSCORES] [LIMIT** 
 
      **offset count]** 
 
@@ -706,14 +724,14 @@
 
      ![1571789167912](unit06.assets/1571789167912.png) 
 
- 13.  **ZREVRANK key member** 
+ 14. **ZREVRANK key member** 
 
      返回有序集 key 中成员 member 的排名。其中有序集成员按 score 值递减(从大到小)排序。
 
- 14.  **ZSCORE key member** 
+ 15. **ZSCORE key member** 
 
      返回有序集 key 中，成员 member 的 score 值。
-     
+
      
 
 # 课堂练习
