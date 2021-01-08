@@ -19,21 +19,23 @@
 
 linux命令是对Linux系统进行管理的命令。对于Linux系统来说，无论是中央处理器、内存、磁盘驱动器、键盘、鼠标，还是用户等都是文件，Linux系统管理的命令是它正常运行的核心，与之前的DOS命令类似。本单元我们要掌握linux的系统、文件、目录、用户、权限等操作命令。
 
+  参考地址：https://man.linuxde.net/
+
+​    https://www.runoob.com/linux/linux-system-contents.html
+
+
 ## 2.2 Linux常用的系统命令
-
-### fsck命令
-
-fsck命令被用于检查并且试图修复文件系统中的错误。
 
 
 
 ### shutdown 命令
 
+```
 shutdown -h now 立即关机
 
 shutdown –h 10 ‘This server will shutdown after 10 mins’ 这个命令告诉大家，计算机将在10分钟后关机，并且会显示在登陆用户的当前屏幕中。
 
-shutdown –h now 立马关机
+
 
 shutdown –h 20:25 系统会在今天20:25关机
 
@@ -46,6 +48,9 @@ shutdown –r +10 系统十分钟后重启
 reboot 就是重启，等同于 shutdown –r now
 
 halt 关闭系统，等同于shutdown –h now 和 poweroff
+
+init 0 关闭系统
+```
 
 
 
@@ -64,6 +69,61 @@ reboot命令用来重新启动正在运行的Linux操作系统
 ### halt命令
 
 用来关闭正在运行的Linux操作系统。halt命令会先检测系统的runlevel，若runlevel为0或6，则关闭系统，否则即调用shutdown来关闭系统。
+
+
+
+### 查看CentOS的版本号
+
+```
+cat   /etc/centos-release
+```
+
+
+
+### 查看内核版本
+
+```
+uname -r 显示系统内核版本
+
+uname -m 显示系统位数
+```
+
+
+
+### 服务相关命令
+
+```text
+$ systemctl start xxxxx
+$ systemctl stop xxxxx
+$ systemctl restart/status/reload sshd
+
+```
+
+常用案例--firewalld （防火墙）的基本使用
+
+```
+
+启动： systemctl start firewalld
+查看状态： systemctl status firewalld 
+停止： systemctl disable firewalld
+禁用： systemctl stop firewalld
+```
+
+常用案例--network （网络）的基本使用
+
+```
+启动网络：systemctl start network
+查看状态：systemctl status network
+```
+
+
+
+### 自启动
+
+```text
+$ systemctl enable xxxxx
+$ systemctl disable xxxxx
+```
 
 
 
@@ -404,7 +464,62 @@ rm命令可以删除一个目录中的一个或多个文件或目录，也可以
 
 ![1568771900468](image02.assets/1568771900468.png)  
 
+### grep命令
 
+作用：用于过滤、搜索特定字符 ，可配合正则表达式使用
+
+-i  忽略大小写
+
+```
+grep  MemTotal  /proc/meminfo  --检查内存空间
+
+grep  SwapTotal  /proc/meminfo  --检查交换分区
+```
+
+### free
+
+检查当前可用的内存和交换分区
+
+
+
+![image-20210104144508805](unit02/image-20210104144508805.png)
+
+**Mem** 行(第二行)是内存的使用情况。
+**Swap** 行(第三行)是交换空间的使用情况。
+**total** 列显示系统总的可用物理内存和交换空间大小。
+**used** 列显示已经被使用的物理内存和交换空间。
+**free** 列显示还有多少物理内存和交换空间可用使用。
+**shared** 列显示被共享使用的物理内存大小。
+**buff/cache** 列显示被 buffer 和 cache 使用的物理内存大小。
+**available** 列显示还可以被应用程序使用的物理内存大小。
+
+
+
+### ps
+
+```
+作用：用来查看系统进程信息
+
+格式：ps [参数]
+
+-e 显示所有进程
+
+-f 显示UID,PPIP,C,STIME 信息
+```
+
+如：
+
+ 我们启动一个进程
+
+ 
+
+![im](unit02/wps1.jpg) 
+
+查看该进程
+
+重新打开一个终端
+
+![img](unit02/wps2.jpg)
 
 ### ln命令
 
@@ -529,6 +644,16 @@ tar -zxvf gzip .gz结尾的文件
 **课堂案例**: 将tomcat解压到/opt目录下
 
 ![1568784667416](image02.assets/1568784667416.png)  
+
+
+
+压缩：
+
+tar -zcvf   目标文件 .tar.gz   源文件
+
+解压
+
+tar -zxvf  源文件.tar.bz  解压到什么目标位置
 
 
 
@@ -658,6 +783,12 @@ Again Shell)等。
 
 创建一个用户就会自动创建一个同名的用户组
 
+#### 创建用户并指定到组
+
+```
+useradd -g 组名：用户名
+```
+
 
 
 ### passwd命令
@@ -718,6 +849,14 @@ usermod命令用来改变user id，必须确认这名user没在电脑上执行�
 -u<uid>：修改用户ID； 
 
 -U:解除密码锁定。
+```
+
+
+
+ 案例，把用户 lucy 指定到具体的组 1809B 
+
+```
+usermod -g 1809b lucy
 ```
 
 
@@ -869,7 +1008,9 @@ chown命令改变某个文件或目录的所有者和所属的组,命令可以�
 --version：显示版本信息。 
 ```
 
-**课堂案例**: 修改test目录 以及子目录中的所有文件和目录 都改成 chengongjun属主 chengongjun属组
+chown -R  用户:用户组  目录
+
+课堂案例**: 修改test目录 以及子目录中的所有文件和目录 都改成 chengongjun属主 chengongjun属组
 
 ![1568862101584](image02.assets/1568862101584.png)  
 
@@ -889,6 +1030,8 @@ chgrp命令用来改变文件或目录所属的用户组。该命令用来改变
 
 ### chmod命令
 
+![1599613564823](unit02.assets/1599613564823.png)
+
 chmod命令用来变更文件或目录的权限 
 
 ```
@@ -906,14 +1049,32 @@ w 写入权限，数字代号为“2”；
 
 x 执行或切换权限，数字代号为“1”； 
 
-\- 不具任何权限，数字代号为“0”； 
+- 不具任何权限，数字代号为“0”； 
 
 s 特殊功能说明：变更文件或目录的权限
 ```
 
 ![1568862198830](image02.assets/1568862198830.png)  
 
+**2.6 静态IP 配置**
 
+vi /etc/sysconfig/network-scripts/ifcfg-xxx
+
+DEVICE=eth0
+HWADDR=00:0C:29:F5:1D:6A
+TYPE=Ethernet
+UUID=8f49ebc2-5b1b-4135-863b-6acb0c84453f
+ONBOOT=yes
+NM_CONTROLLED=yes
+BOOTPROTO=static #设置为静态
+IPADDR=192.168.179.13 #ip
+NETMASK=255.255.255.0
+GATEWAY=192.168.179.2#网关
+DNS1=192.168.179.2 #配置网关连接外网
+
+\#source /etc/sysconfig/network-scripts/ifcfg-xxx
+
+ service network restart  #重新启动
 
 # 课堂练习
 
@@ -953,6 +1114,14 @@ s 特殊功能说明：变更文件或目录的权限
 
 ​    5.使用两种方式修改abc.txt文件的权限为-rwxr-xr--(5分钟)
 
+​    方法1:   chmod 754 abc.txt
+
+   方法2:   chmod u=rwx,g=rx,o=r-- abc.txt
+
+   也可以通过
+
+![1594739091181](unit02.assets/1594739091181.png)
+
 
 
 ## 3.关机和重启(10分钟)
@@ -961,7 +1130,19 @@ s 特殊功能说明：变更文件或目录的权限
 
 ​	1.使用3种不同的命令进行重启(5分钟)
 
+​     reboot
+
+​     init 6
+
+​    shutdown -r now
+
 ​	2.使用3种不同的命令进行关机(5分钟)
+
+  shutdown -h now
+
+  halt
+
+  init 0
 
 ​	
 
