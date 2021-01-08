@@ -33,6 +33,8 @@
 
 #### **4.2.2 相关知识点：rpm命令**
 
+rpm（英文全拼：redhat package manager） 原本是 Red Hat Linux 发行版专门用来管理 Linux 各项套件的程序，由于它遵循 GPL 规则且功能强大方便，因而广受欢迎。逐渐受到其他发行版的采用。RPM 套件管理方式的出现，让 Linux 易于安装，升级，间接提升了 Linux 的适用度
+
 l 格式：rpm [参数] [软件]
 
 ​		-v 　显示指令执行过程。
@@ -90,7 +92,7 @@ rpm -e --nodeps java-1.6.0-openjdk-1.6.0.35-1.13.7.1.el6_6.x86_64
 l 第三步：将之前上传好的JDK解压
 
 ```
-需要先创建目录 mkdir /usr/local/src/java
+需要先创建目录 mkdir /opt/java
 
 tar –zxvf jdk1.8.0_65.tar.gz
 ```
@@ -99,7 +101,7 @@ tar –zxvf jdk1.8.0_65.tar.gz
 
 l 第四步：将加压好的JDK移动到java目录中
 
-mv jdk1.8.0_65 /usr/local/src/java
+mv jdk1.8.0_65 /opt/java
 
 ![1570847308445](unit04.assets/1570847308445.png) 
 
@@ -112,7 +114,7 @@ vim /etc/profile   #进入根目录
 在这个配置文件的末尾(先i，可以移动光标，通过上下左右箭头)，添加如下2行代码(建议复制)
 
 ```
-export JAVA_HOME=/usr/local/src/java/jdk1.8.0_65
+export JAVA_HOME=/opt/jdk1.8.0_65
 
 export PATH=$JAVA_HOME/bin:$PATH
 ```
@@ -139,133 +141,98 @@ java –version  #测试是否安装成功
 
 ![1570847615113](unit04.assets/1570847615113.png) 
 
-## 4.3 在Linux中安装mysql
+## 4.3 在Linux中安装mysql（在线安装）
 
-l 第一步：查看之前版本
+### 4.3.1 安装MySQL
+
+l 第一步：卸载系统自带的Mariadb
+
+mariadb是mysql 的一个分支
 
 ```
-rpm -qa | grep -i mysql --color
+   rpm -qa|grep mariadb
 ```
 
-![1570847641157](unit04.assets/1570847641157.png) 
+
 
 l 第二步：卸载之前的版本
 
 ```
-rpm -e --nodeps mysql-libs-5.1.73-5.el6_6.x86_64 
+rpm -e --nodeps     mariadb-libs-5.5.56-2.el7.x86_64                    [查询出来的文件名]
 ```
 
-![1570847663143](unit04.assets/1570847663143.png) 
 
-l 第三步：上传2个rpm的MySQL文件(5.5.49)
 
-![1570847679243](unit04.assets/1570847679243.png) 
-
-MySQL安装系统会自动指定目录。
-
-l 第四步：安装server
+l 第三步：从网上下载文件的wget命令
 
 ```
-rpm -ivh MySQL-server-5.6.25-1.el6.x86_64.rpm
+ yum -y install wget
 ```
 
-![1570847740832](unit04.assets/1570847740832.png) 
 
-l 第五步：安装client
 
-```
-rpm -ivh MySQL-client-5.6.25-1.el6.x86_64.rpm
-```
-
-![1570847757835](unit04.assets/1570847757835.png) 
-
-l 第六步：查询MySQL服务运行状态
+l 第四步：下载mysql的repo源
 
 ```
-service mysql status
+wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
 ```
 
-![1570847824571](unit04.assets/1570847824571.png) 
 
-l 第七步：启动MySQL服务
+
+l 第五步：安装mysql-community-release-el7-5.noarch.rpm包
 
 ```
-service mysql start
+ rpm -ivh mysql-community-release-el7-5.noarch.rpm
 ```
 
-![1570847940605](unit04.assets/1570847940605.png) 
+l 第六步：检查是否有两个	repo源
 
-l 第八步：使用root账户登录MySQL
+```
+ ls -1 /etc/yum.repos.d/mysql-community*
+```
 
-使用空密码登录:
+![ ](../第2单元 Linux命令/unit02.assets/image-20210104215250256.png)
+
+l 第七步：安装mysql
+
+```
+yum -y install mysql-server
+```
+
+
+
+l 第八步：启动mysql
+
+```
+systemctl start mysqld.service
+```
+
+### 4.3.2 配置MySQL
+
+第一步：以root账户登录mysql,默认是没有密码的
 
 ```
 mysql -uroot -p
 ```
 
-登录成功后
+要输入密码的时候直接回车即可
 
-l 第九步：修改密码
-
-```
-SET PASSWORD = PASSWORD('root');
-```
-
-![1570847985285](unit04.assets/1570847985285.png) 
-
-l 第十步：虚拟机内部登录MySQL
+l 第二步：设置root账户密码为root（也可以修改成你要的密码）
 
 ```
-mysql -u root –p   密码为之前设置的root
+mysql> use mysql
+mysql> update user set password=password('root') where user='root' and host='localhost';
+mysql> flush privileges;
 ```
 
-![1570848007490](unit04.assets/1570848007490.png) 
 
-l 第十一步：远程主机访问，设置防火墙
 
-n 打开防火墙配置
+l 第三步：设置远程主机登录，注意下面的your username 和 your password改成你需要设置的用户和密码
 
 ```
-vim /etc/sysconfig/iptables
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH
+GRANT OPTION;
 ```
-
-n 设置内容
-
-```
--A INPUT -m state --state NEW -m tcp -p tcp --dport 3306 -j ACCEPT
-```
-
-![1570848029750](unit04.assets/1570848029750.png) 
-
-n 重启服务  
-
-```
-service iptables restart
-```
-
-![1570848046094](unit04.assets/1570848046094.png) 
-
-n 使用mysql语句创建远程登录用户(**登录MySQL**)
-
-```
-create user 'root'@'%' identified by 'root';		#创建用户，并设置密码
-
-grant all on *.* to 'root'@'%' with grant option;	#给指定的用户授权
-
-flush privileges;									#刷新权限
-```
-
-![1570848130702](unit04.assets/1570848130702.png) 
-
-n 远程访问成功
-
-```
-mysql -h192.168.59.128 -uroot –proot
-```
-
-​	打开DOS窗口，输入上面的命令
-
-![1570848158356](unit04.assets/1570848158356.png) 
 
 
 
@@ -280,70 +247,48 @@ rz 上传
 l 第二步：解压Tomcat
 
 ```
-tar -zxvf apache-tomcat-7.0.57.tar.gz
+tar -zxvf apache-tomcat-8.0.21.tar.gz
+```
+
+ 
+
+l 第三步：移动到指定目录/opt/
+
+```
+mv apache-tomcat-8.0.21 /opt/tomcat8
 ```
 
 
 
-![1570848196434](unit04.assets/1570848196434.png) 
-
-l 第三步：移动到指定目录java
+l 第四步：配置防火墙(所有的配置都在etc目录下面,指定windows系统访问的端口号,如果防火墙关闭，则跳过此步骤)
 
 ```
-mv apache-tomcat-7.0.57 /usr/local/src/java
+firewall-cmd --zone=public --add-port=8080/tcp --permanent   
+
+firewall -cmd –reload   #重新载入
 ```
 
-![1570848214144](unit04.assets/1570848214144.png) 
 
-l 第四步：配置防火墙(所有的配置都在etc目录下面,指定windows系统访问的端口号)
 
-```
-vim /etc/sysconfig/iptables
-```
 
-![1570848229141](unit04.assets/1570848229141.png) 
-
-n 运行8080端口远程访问
-
-```
--A INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT
-```
-
-![1570848246710](unit04.assets/1570848246710.png) 
-
-n 重启启动防火墙服务
-
-先进入tomcat的安装目录
-
-![1570848262902](unit04.assets/1570848262902.png) 
-
-```
-service iptables restart     #重启防火墙命令
-```
-
-![1570848280308](unit04.assets/1570848280308.png) 
 
 l 第五步：启动并访问Tomcat
 
 **进入tomcat所在的bin目录**
 
 ```
-cd /usr/local/src/java/apache-tomcat-7.0.57/bin
+cd /opt/tomcat8/bin
 ```
 
-![1570848297516](unit04.assets/1570848297516.png) 
+启动
 
 ```
-启动tomcat:  ./startup.sh
+./startup.sh
 ```
 
-![1570848315365](unit04.assets/1570848315365.png) 
+第六步：测试访问，浏览器访问：
 
-
-
-浏览器访问：
-
-![1570848347719](unit04.assets/1570848347719.png) 
+![image-20210104220511532](../第2单元 Linux命令/unit02.assets/image-20210104220511532.png)
 
 第六步：关闭Tomcat结束测试
 

@@ -21,16 +21,26 @@ Redis因其性能比较高，所以经常在项目中用于缓存数据，本章
 #### 8.2.1 创建maven工程,再pom.xml中导入依赖
 
 ```xml
-    	<dependency>
+      <!-- 连接redis -->
+	    <dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+		<dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.8.4.RELEASE</version>
+        </dependency>
+        
+
+
+      <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>
             <version>2.0</version>
         </dependency>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>2.6.2</version>
-        </dependency>
+      
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -61,11 +71,7 @@ Redis因其性能比较高，所以经常在项目中用于缓存数据，本章
             <artifactId>spring-test</artifactId>
             <version>4.2.4.RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-redis</artifactId>
-            <version>1.4.1.RELEASE</version>
-        </dependency>
+     
 ```
 
 

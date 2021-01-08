@@ -24,155 +24,75 @@
 
 NoSQL(NoSQL = Not Only SQL)，意即“不仅仅是SQL”，是一项全新的数据库理念，泛指非关系型的数据库。
 
-(关系型数据库<MySQL、Oracle、DB2、SQLServer>：有标，而且表与表直接存在关系<主外键>)
+(关系型数据库<MySQL、Oracle、DB2、SQLServer>：有表，而且表与表直接存在关系<主外键>)
 
 NoSQL与关系型数据库SQL是互相弥补的……
 
  
 
-### 5.1.2 为什么需要NoSQL
+### 5.1.2 Nosql的特性
 
-随着互联网web2.0网站的兴起，非关系型的数据库现在成了一个极其热门的新领域，非关系数据库产品的发展非常迅速。而传统的关系数据库在应付web2.0网站，特别是超大规模和高并发的SNS类型的web2.0纯动态网站已经显得力不从心，暴露了很多难以克服的问题，例如：
+Ø Schemaless (弱结构)
 
- 
+Ø In-Memory (基于内存)
 
- 1、High performance - 对数据库高并发读写的需求 
+Ø 弱化事务
 
-web2.0网站要根据用户个性化信息来实时生成动态页面和提供动态信息，所以基本上无法使用动态页面静态化技术，因此数据库并发负载非常高，往往要达到每秒上万次读写请求。关系数据库应付上万次SQL查询还勉强顶得住，但是应付上万次SQL写数据请求，硬盘IO就已经无法承受了。其实对于普通的BBS网站，往往也存在对高并发写请求的需求，例如网站的实时统计在线用户状态，记录热门帖子的点击次数，投票计数等，因此这是一个相当普遍的需求。
+Ø 适用于Cluster(集群)环境
 
- 2、Huge Storage - 对海量数据的高效率存储和访问的需求 
+Ø 没有复杂的连接查询操作
 
-类似Facebook，twitter，Friendfeed这样的SNS网站，每天用户产生海量的用户动态，以Friendfeed为例，一个月就达到了2.5亿条用户动态，对于关系数据库来说，在一张2.5亿条记录的表里面进行SQL查询，效率是极其低下乃至不可忍受的。再例如大型web网站的用户登录系统，例如腾讯，盛大，动辄数以亿计的帐号，关系数据库也很难应付。 
-
- 3、High Scalability && High Availability- 对数据库的高可扩展性和高可用性的需求 
-
-在基于web的架构当中，数据库是最难进行横向扩展的，当一个应用系统的用户量和访问量与日俱增的时候，你的数据库却没有办法像web server和app server那样简单的通过添加更多的硬件和服务节点来扩展性能和负载能力。对于很多需要提供24小时不间断服务的网站来说，对数据库系统进行升级和扩展是非常痛苦的事情，往往需要停机维护和数据迁移，为什么数据库不能通过不断的添加服务器节点来实现扩展呢？
-
-​	NoSQL数据库的产生就是为了解决大规模数据集合多重数据种类带来的挑战，尤其是大数据应用难题。
-
- 
+Ø  持久化
 
 ### 5.1.3 主流NoSQL产品
 
-![1565950738315](assets/1565950738315.png) 
+![1599714115988](Redis概述与安装.assets/1599714115988.png)
 
-l NoSQL数据库的四大分类如下：
+Ø Cassandra:  基于图片存储
 
-n 键值(Key-Value)存储数据库   redis到时候设置值： set key value  、、get key
+Ø Hbase:基于列存储
 
-相关产品： Tokyo Cabinet/Tyrant、Redis、Voldemort、Berkeley DB
+Ø mongoDB：基于文档存储
 
-典型应用： **内容缓存**，主要用于处理大量数据的高访问负载。 **缓存****、****分布式****集群**
+Ø CouchDB:基于文档存储
 
-数据模型： 一系列键值对
+Ø Riak:基于键值存储
 
-优势： 快速查询(由它的存储结构决定的)
-
-劣势： 存储的数据缺少结构化
-
-n 列存储数据库
-
-相关产品：Cassandra, HBase, Riak  (大数据)
-
-典型应用：分布式的文件系统
-
-数据模型：以列簇式存储，将同一列数据存在一起
-
-优势：查找速度快，可扩展性强，**更容易进行分布式扩展**
-
-劣势：功能相对局限
-
-n 文档型数据库
-
-相关产品：CouchDB、MongoDB   类似html
-
-典型应用：Web应用（与Key-Value类似，Value是结构化的）
-
-数据模型： 一系列键值对
-
-优势：数据结构要求不严格
-
-劣势： 查询性能不高，而且缺乏统一的查询语法
-
-n 图形(Graph)数据库(腾讯)  A  **B**  C D E
-
-相关数据库：Neo4J、InfoGrid、Infinite Graph
-
-典型应用：社交网络
-
-数据模型：图结构
-
-优势：利用图结构相关算法。
-
-劣势：需要对整个图做计算才能得出结果，不容易做分布式的集群方案。
+Ø Redis：基于键值存储
 
  
-
-### 5.1.4 NoSQL特点
-
-在大数据存取上具备关系型数据库无法比拟的**性能优势**，例如：
-
-1. 易扩展
-
- NoSQL数据库种类繁多，但是一个共同的特点都是去掉关系数据库的关系型特性。数据之间无关系，这样就非常容易扩展。也无形之间，在架构的层面上带来了可扩展的能力。
-
-2. 大数据量，高性能
-
- NoSQL数据库都具有非常高的读写性能，尤其在大数据量下，同样表现优秀。这得益于它的无关系性，数据库的结构简单。
-
-3. 灵活的数据模型
-
- NoSQL无需事先为要存储的数据建立字段，随时可以存储自定义的数据格式。而在关系数据库里，增删字段是一件非常麻烦的事情。如果是非常大数据量的表，增加字段简直就是一个噩梦。这点在大数据量的Web2.0时代尤其明显。
-
-4. 高可用
-
- NoSQL在不太影响性能的情况，就可以方便的实现高可用的架构。比如Cassandra，HBase模型，通过复制模型也能实现高可用。
-
-综上所述，NoSQL的非关系特性使其成为了后Web2.0时代的宠儿，助力大型Web2.0网站的再次起飞，是一项全新的数据库革命性运动。
-
-### 5.1.5 Redis由来
-
-2008年，意大利的一家创业公司Merzia推出了一款基于MySQL的网站实时统计系统LLOOGG，然而没过多久该公司的创始人 Salvatore Sanfilippo便 对MySQL的性能感到失望，于是他决定亲自为LLOOGG量身定做一个数据库，并于2009年开发完成，这个数据库就是Redis。 不过Salvatore Sanfilippo并不满足只将Redis用于LLOOGG这一款产品，而是希望更多的人使用它，于是在同一年Salvatore Sanfilippo将Redis开源发布，并开始和Redis的另一名主要的代码贡献者Pieter Noordhuis一起继续着Redis的开发，直到今天。
-
-​	Salvatore Sanfilippo自己也没有想到，短短的几年时间，Redis就拥有了庞大的用户群体。Hacker News在2012年发布了一份数据库的使用情况调查，结果显示有近12%的公司在使用Redis。国内如新浪微博、街旁网、知乎网，国外如GitHub、Stack Overflow、Flickr等都是Redis的用户。
-
-​	VMware公司从2010年开始赞助Redis的开发， Salvatore Sanfilippo和Pieter Noordhuis也分别在3月和5月加入VMware，全职开发Redis。
 
 ### 5.1.6 什么是Redis
 
-Redis是用C语言开发的一个开源的高性能键值对（key-value）数据库。它通过提供多种键值数据类型来适应不同场景下的存储需求，目前为止Redis支持的键值数据类型如下：
+ **Redis是用C 语言开发的、一个开源、支持网络、基于内存、键值对型的NOSQL数据库。**
 
-1、 字符串类型
+Ø Redis是一个高性能的Key/VaIue数据库
 
-2、 散列类型			hash被(string和json)取代了
+Ø 基于内存
 
-3、 列表类型
+Ø 数据类型丰富（string\list\set\sortset\hash）
 
-4、 集合类型
+Ø 持久化
 
-5、 有序集合类型。
+Ø 单线程
 
- 
-
-官方提供测试数据：50个并发执行100000个请求,读的速度是110000次/s,写的速度是81000次/s 。数据仅供参考，根据服务器配置会有不同结果。
+Ø 订阅/发布模型
 
  
 
 ### 5.1.7  redis的应用场景
 
- 缓存（数据查询、短连接、新闻内容、商品内容等等）。（最多使用，变化不大）
+#### 5.1.7.1 传统的架构
 
- 聊天室的在线好友列表。
+![img](Redis概述与安装.assets/wps1.jpg) 
 
- 任务队列。（秒杀、抢购、12306等等）
+#### 5.1.7.2 Redis 存储非关系型数据架构
 
- 应用排行榜。
+![img](Redis概述与安装.assets/wps2.jpg) 
 
- 网站访问统计。
+#### 5.1.7.3 Redis 充当缓存服务器架构
 
- 数据过期处理（可以精确到毫秒）
-
- 分布式集群架构中的session分离。【第二个大型电商项目中使用】
+![img](Redis概述与安装.assets/wps3.jpg)
 
  
 
@@ -206,73 +126,47 @@ yum install gcc-c++
 
 **2. Redis安装**
 
- 步骤1：将Windows下下载的压缩文件上传到Linux下。通过secureCRT进行上传，步骤如下：
+ 步骤1：将Windows下下载的压缩文件上传到Linux下，步骤如下：
 
-rz 命令上传redis安装包
+![image-20210108101315672](../第2单元 Linux命令/unit02.assets/image-20210108101315672.png)
 
-![1567065245667](assets/1567065245667.png)  
 
- 步骤2：创建一个目录
 
-```
-mkdir /usr/local/src/java/redis
-```
 
-![1565950891667](assets/1565950891667.png) 
 
- 步骤3.将redis这个文件移动到创建好的这个目录里面去
+ 步骤2.将redis这个文件解压到opt目下
 
 ```
-mv redis-3.0.0.tar.gz /usr/local/src/java/redis
+tar -zxvf  redis-4.0.1.tar.gz  -C /opt/
 ```
 
-![1565950920897](assets/1565950920897.png) 
 
- 步骤4：解压这个文件
 
-先进入这个目录
-
-![1565950932581](assets/1565950932581.png) 
-
-然后使用解压命令：
-
-```
-tar –zxvf redis-3.0.0.tar.gz
-```
-
-图省略！
-
- 步骤5：编译redis (编译，将.c文件编译为.o文件)【Redis是由C语言开发的】
+ 步骤3：编译redis (编译，将.c文件编译为.o文件)【Redis是由C语言开发的】
 
 进入解压文件夹，
 
 ```
-cd redis-3.0.0
+cd redis-4.0.1
 ```
 
-![1565950946456](assets/1565950946456.png) 
+
 
 执行make进行编译
 
 ![1565950964228](assets/1565950964228.png) 
 
-1）如果没有安装gcc，编译将出现错误提示。（如果安装失败，必须删除文件夹，重写解压）
 
-![1565950975629](assets/1565950975629.png) 
 
-2）安装成功
-
-![1565950992684](assets/1565950992684.png) 
-
- 步骤6：	安装   (**此时,在这里安装的目的就是为了生成redis的bin目录**)
+ 步骤4：	安装   (**此时,在这里安装的目的就是为了生成redis的bin目录**)
 
 ```
-make PREFIX=/usr/local/src/java/redis install
+make PREFIX=/opt/redis install
 ```
 
-![1565951014374](assets/1565951014374.png) 
 
-安装完后，在/usr/local/redis/bin下有几个可执行文件
+
+安装完后，在/opt/redis/bin下有几个可执行文件
 
 ![1565951045125](assets/1565951045125.png) 
 
@@ -292,17 +186,48 @@ redis-server		----redis服务器启动命令
 
 redis启动需要一个配置文件，可以修改端口号等信息。
 
-先进入你安装的这个redis目录，然后查看相关的文件是否存在！
+先进入你安装的这个redis4-0.0.1目录，然后查看相关的文件是否存在！
 
-![1565951081596](assets/1565951081596.png) 
+```
+cd /opt/redis-4.0.1
+```
+
+
 
 然后执行复制操作（进入复制的文件目录中查看）
 
 ```
-cp redis.conf /usr/local/src/java/redis
+cp redis.conf /opt/redis/bin
 ```
 
-![1565951097371](assets/1565951097371.png) 
+
+
+需要改变三个地方：
+
+```
+#bind 127.0.0.1             // 注释掉  69行
+
+protected-mode no               // yes--->no  89行
+
+daemonize yes                    # no----> yes 在138行
+```
+
+
+
+已配置方式启动redis
+
+```
+/opt/redis/bin/redis-server  /opt/redis/bin/redis.conf
+```
+
+使用客户端连接测试
+
+```
+/opt/redis/bin/redis-cli 
+
+```
+
+![image-20210108103304908](Redis概述与安装.assets/image-20210108103304908.png)
 
 reids.conf  配置的具体信息如下:
 
@@ -348,7 +273,7 @@ reids.conf  配置的具体信息如下:
 **课堂案例:** 前端模式启动redis服务
 
 ```
-/usr/local/src/java/redis/bin/redis-server 
+/opt/redis/bin/redis-server 
 ```
 
 ​       
@@ -366,7 +291,7 @@ reids.conf  配置的具体信息如下:
  修改redis.conf配置文件， daemonize yes 以后端模式启动。
 
 ```
-vim /usr/local/src/java/redis/redis.conf
+vim /opt/redis/bin/redis.conf
 ```
 
 在文件的最后加入 daemonize yes
@@ -405,6 +330,8 @@ ps –ef | grep –i redis
 
 ### 5.2.4 Redis停止
 
+**方式一：**
+
  强制结束程序。强行终止Redis进程可能会导致redis持久化数据丢失。(不要使用这个)
 
 ```
@@ -414,6 +341,8 @@ kill -9 31475		#pid需要通过“ps aux | grep -i redis”进行查询
  正确停止Redis的方式应该是向Redis发送SHUTDOWN命令，方法为：（关闭默认端口）
 
 先进入redis的bin目录(cd /usr/local/src/java/redis/bin)
+
+**方式二：**
 
 在执行./redis-cli shutdown  (重新连接可以检验是否停止成功！)
 

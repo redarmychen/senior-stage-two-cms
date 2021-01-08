@@ -331,6 +331,12 @@ public class ArticleServiceImpl implements ArticleService {
 
 配置实体
 
+![1600905863787](ElasticSearch基本用法.assets/1600905863787.png)
+
+
+
+![1600905893854](ElasticSearch基本用法.assets/1600905893854.png)
+
 ```java
 //@Document 文档对象 （索引信息、文档类型 ）
 @Document(indexName="blog3",type="article") 
